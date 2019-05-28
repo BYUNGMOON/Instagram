@@ -54,7 +54,8 @@ public class SignUpLoginActivity extends AppCompatActivity implements View.OnCli
         btnLogin.setOnClickListener(this);
 
         if (ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+//            ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
     }
 
@@ -93,6 +94,8 @@ public class SignUpLoginActivity extends AppCompatActivity implements View.OnCli
                                     edtUsername.getText() + " is signed up successfully",
                                     Toast.LENGTH_LONG).show();
 
+                            transitionToSocialMediaActivity();
+
                         } else {
                             Toast.makeText(SignUpLoginActivity.this,
                                     edtUsername.getText() + "can't be singed up" + "\n" + e.getMessage(),
@@ -120,5 +123,10 @@ public class SignUpLoginActivity extends AppCompatActivity implements View.OnCli
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void transitionToSocialMediaActivity() {
+        Intent intent = new Intent(SignUpLoginActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }

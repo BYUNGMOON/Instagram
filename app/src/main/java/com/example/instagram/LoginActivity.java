@@ -54,7 +54,8 @@ import com.parse.ParseUser;
         btnSignup.setOnClickListener(this);
 
         if (ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+//            ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
 
 //        btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +119,8 @@ import com.parse.ParseUser;
                                             edtEmail.getText() + " is signed up successfully",
                                             Toast.LENGTH_LONG).show();
 
+                                    transitionToSocialMediaActivity();
+
                                 } else {
                                     Toast.makeText(LoginActivity.this,
                                             edtEmail.getText() + "can't be singed up" + "\n" + e.getMessage(),
@@ -142,6 +145,11 @@ import com.parse.ParseUser;
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void transitionToSocialMediaActivity() {
+        Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 
 }
